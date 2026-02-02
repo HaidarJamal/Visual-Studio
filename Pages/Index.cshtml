@@ -1,0 +1,105 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "HaidarJamal's Studio";
+}
+
+<div class="studio-container">
+    <h1 id="animated-header">HAIDAR JAMAL</h1>
+    
+    <div class="video-section">
+        <p class="subtitle">Now Playing: Lo-fi Beats / Favorite Track</p>
+        
+        <div class="video-wrapper">
+            <iframe 
+                src="https://www.youtube.com/embed/jfKfPfyJRdk" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* CSS Customization */
+    body {
+        background-color: #0f0f0f; /* Dark sleek background */
+        color: #ffffff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .studio-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 80vh;
+        text-align: center;
+    }
+
+    #animated-header {
+        font-size: 4rem;
+        letter-spacing: 10px;
+        margin-bottom: 20px;
+        transition: color 0.3s ease;
+    }
+
+    .video-section {
+        background: #1e1e1e;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        border: 1px solid #333;
+    }
+
+    .video-wrapper {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        height: 0;
+        width: 600px;
+        max-width: 90vw;
+    }
+
+    .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+    }
+
+    .subtitle {
+        color: #888;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        // JavaScript Looped Animation for the H1
+        const header = document.getElementById('animated-header');
+        const colors = ['#ff0055', '#00fbff', '#fffa00', '#ffffff'];
+        let colorIndex = 0;
+
+        function animateHeader() {
+            // Changing color and scale in a loop
+            header.style.color = colors[colorIndex];
+            header.style.textShadow = `0 0 20px ${colors[colorIndex]}`;
+            header.style.transform = 'scale(1.05)';
+            
+            setTimeout(() => {
+                header.style.transform = 'scale(1)';
+            }, 500);
+
+            colorIndex = (colorIndex + 1) % colors.length;
+        }
+
+        // Start the loop every 1 second
+        setInterval(animateHeader, 1000);
+    </script>
+}
